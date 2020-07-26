@@ -3,26 +3,26 @@ import java.util.Scanner;
 public class Application {
 
 	enum Seasons {
-		
+
 		WINTER, SPRING, SUMMER, FALL;
-			
+
 	}
-	
+
 	enum Months {
 
 		JANUARY(31, Seasons.WINTER), 
 		FEBRUARY(28, Seasons.WINTER), 
 		MARCH(31, Seasons.SPRING), 
-		APRIL(30, Seasons.SPRING), 
+		APRIL(30, Seasons.SPRING),
 		MAY(31, Seasons.SPRING), 
 		JUNE(30, Seasons.SUMMER), 
 		JULY(31, Seasons.SUMMER), 
-		AUGUST(31, Seasons.SUMMER), 
+		AUGUST(31, Seasons.SUMMER),
 		SEPTEMBER(30, Seasons.FALL), 
 		OCTOBER(31, Seasons.FALL), 
-		NOVEMBER(30, Seasons.FALL), 
-		DECEMBER(31, Seasons.WINTER); 
-		
+		NOVEMBER(30, Seasons.FALL),
+		DECEMBER(31, Seasons.WINTER);
+
 		private int days;
 		Seasons season;
 
@@ -38,10 +38,278 @@ public class Application {
 		public Seasons getSeason() {
 			return season;
 		}
-		
+
 	}
 
-	
+	public static void main(String[] args) {
+
+		Months[] masMonths = Months.values();
+		Seasons[] masSeasons = Seasons.values();
+		Scanner scanner = new Scanner(System.in);
+
+		while (true) {
+			menu();
+
+			switch (scanner.next()) {
+
+			case "1": {
+				System.out.println("¬вед≥ть назву м≥с€ц€");
+				scanner = new Scanner(System.in);
+				String month = scanner.next().toUpperCase();
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.name().equals(month)) {
+						System.out.println("Ќазву м≥с€ц€ знайдено");
+						flag = true;
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("Ќазву м≥с€ц€ Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			case "2": {
+				System.out.println("¬вед≥ть пору року");
+				scanner = new Scanner(System.in);
+				String season = scanner.next().toUpperCase();
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.getSeason().name().equals(season)) {
+						flag = true;
+					}
+
+				}
+
+				if (flag) {
+					Seasons seasonsValue = Seasons.valueOf(season);
+					for (Months m2 : masMonths) {
+						if (m2.getSeason().toString().equalsIgnoreCase(season)) {
+							System.out.println(m2);
+						}
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("ѕори року Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			case "3": {
+				System.out.println("¬вед≥ть к≥льк≥сть дн≥в");
+				scanner = new Scanner(System.in);
+				int days = scanner.nextInt();
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.getDays() == days) {
+						System.out.println(m.name());
+						flag = true;
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("ћ≥с€ц≥в з такою к≥льк≥стю дн≥в Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			case "4": {
+				System.out.println("¬вед≥ть к≥льк≥сть дн≥в");
+				scanner = new Scanner(System.in);
+				int days = scanner.nextInt();
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.getDays() < days) {
+						System.out.println(m.name());
+						flag = true;
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("ћ≥с€ц≥в з такою к≥льк≥стю дн≥в Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			case "5": {
+				System.out.println("¬вед≥ть к≥льк≥сть дн≥в");
+				scanner = new Scanner(System.in);
+				int days = scanner.nextInt();
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.getDays() > days) {
+						System.out.println(m.name());
+						flag = true;
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("ћ≥с€ц≥в з такою к≥льк≥стю дн≥в Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			case "6": {
+				System.out.println("¬вед≥ть пору року");
+				scanner = new Scanner(System.in);
+				String season = scanner.next().toUpperCase();
+
+				boolean flag = false;
+
+				for (Seasons s : masSeasons) {
+					if (s.name().equals(season)) {
+						flag = true;
+					}
+				}
+
+				if (flag) {
+					System.out.println("Ќаступна пора року - ");
+					Seasons seasonsValue6 = Seasons.valueOf(season);
+					int ordinal = seasonsValue6.ordinal();
+					if (ordinal == (masSeasons.length - 1)) {
+						ordinal = 0;
+						System.out.println(masSeasons[ordinal]);
+					} else {
+						System.out.println(masSeasons[ordinal + 1]);
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("ѕори року Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			case "7": {
+				System.out.println("¬вед≥ть пору року");
+				scanner = new Scanner(System.in);
+				String season = scanner.next().toUpperCase();
+
+				boolean flag = false;
+
+				for (Seasons s : masSeasons) {
+					if (s.name().equals(season)) {
+						flag = true;
+					}
+				}
+
+				if (flag) {
+					System.out.println("ѕопередн€ пора року - ");
+					Seasons seasonsValue7 = Seasons.valueOf(season);
+					int ordinal = seasonsValue7.ordinal();
+					if (ordinal == 0) {
+						ordinal = (masSeasons.length - 1);
+						System.out.println(masSeasons[ordinal]);
+					} else {
+						System.out.println(masSeasons[ordinal - 1]);
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("ѕори року Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			case "8": {
+				System.out.println("ћ≥с€ц≥, €к≥ мають парну к≥льк≥сть дн≥в");
+				// scanner = new Scanner(System.in);
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.getDays() % 2 == 0) {
+						System.out.println(m.name());
+						flag = true;
+					}
+
+				}
+
+				break;
+			}
+
+			case "9": {
+				System.out.println("ћ≥с€ц≥, €к≥ мають непарну к≥льк≥сть дн≥в");
+				// scanner = new Scanner(System.in);
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.getDays() % 2 != 0) {
+						System.out.println(m.name());
+						flag = true;
+					}
+				}
+
+				break;
+			}
+
+			case "10": {
+				System.out.println("¬вед≥ть назву м≥с€ц€");
+				scanner = new Scanner(System.in);
+				String month = scanner.next().toUpperCase();
+
+				boolean flag = false;
+
+				for (Months m : masMonths) {
+					if (m.name().equals(month)) {
+						flag = true;
+					}
+
+				}
+
+				if (flag) {
+					for (Months m : masMonths) {
+						if (m.name().equals(month)) {
+							if (m.getDays() % 2 == 0) {
+								System.out.println("÷ей м≥с€ць маЇ парну к≥льк≥сть дн≥в");
+							} else {
+								System.out.println("÷ей м≥с€ць маЇ непарну к≥льк≥сть дн≥в");
+							}
+						}
+					}
+
+				}
+
+				if (!flag) {
+					System.out.println("Ќазву м≥с€ц€ Ќ≈ знайдено");
+				}
+
+				break;
+			}
+
+			}
+
+		}
+
+	}
+
 	static void menu() {
 		System.out.println("Ќатисн≥ть 1, щоб перев≥рити чи Ї такий м≥с€ць");
 		System.out.println("Ќатисн≥ть 2, щоб вивести вс≥ м≥с€ц≥ з такою ж порою року");
@@ -54,283 +322,5 @@ public class Application {
 		System.out.println("Ќатисн≥ть 9, щоб вивести на екран вс≥ м≥с€ц≥ €к≥ мають непарну к≥льк≥сть дн≥в");
 		System.out.println("Ќатисн≥ть 10, щоб вивести на екран чи введений з консол≥ м≥с€ць маЇ парну к≥льк≥сть дн≥в");
 
-		
 	}
-	
-	public static void main(String[] args) {
-
-		Months [] masMonths = Months.values();
-		Seasons [] masSeasons = Seasons.values();
-		Scanner scanner = new Scanner(System.in);
-		
-		
-		while(true) {
-			menu();
-			
-			switch (scanner.next()) {
-			
-			case "1": {
-				System.out.println("¬вед≥ть назву м≥с€ц€");
-				scanner = new Scanner(System.in);
-				String month = scanner.next().toUpperCase();
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.name().equals(month)) {
-						System.out.println("Ќазву м≥с€ц€ знайдено");
-						flag = true;
-					}
-							
-				}
-			
-				if (!flag) {
-					System.out.println("Ќазву м≥с€ц€ Ќ≈ знайдено");
-				}
-				
-				break;
-			}
-			
-			case "2": {
-				System.out.println("¬вед≥ть пору року");
-				scanner = new Scanner(System.in);
-				String season = scanner.next().toUpperCase();
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.getSeason().name().equals(season)) {
-						flag = true;
-					}
-							
-				}
-				
-				if(flag) {
-					Seasons seasonsValue = Seasons.valueOf(season);
-					for(Months m2 : masMonths) {
-						if(m2.getSeason().toString().equalsIgnoreCase(season)) {
-							System.out.println(m2);
-						}
-					}
-					
-				}
-			
-				if (!flag) {
-					System.out.println("ѕори року Ќ≈ знайдено");
-				}
-				
-				break;	
-			}
-			
-			case "3": {
-				System.out.println("¬вед≥ть к≥льк≥сть дн≥в");
-				scanner = new Scanner(System.in);
-				int days = scanner.nextInt();
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.getDays() == days) {
-						System.out.println(m.name());
-						flag = true;
-					}
-							
-				}
-				
-			
-				if (!flag) {
-					System.out.println("ћ≥с€ц≥в з такою к≥льк≥стю дн≥в Ќ≈ знайдено");
-				}
-				
-				break;	
-			}
-			
-			case "4": {
-				System.out.println("¬вед≥ть к≥льк≥сть дн≥в");
-				scanner = new Scanner(System.in);
-				int days = scanner.nextInt();
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.getDays() < days) {
-						System.out.println(m.name());
-						flag = true;
-					}
-							
-				}
-				
-			
-				if (!flag) {
-					System.out.println("ћ≥с€ц≥в з такою к≥льк≥стю дн≥в Ќ≈ знайдено");
-				}
-				
-				break;	
-			}
-			
-			case "5": {
-				System.out.println("¬вед≥ть к≥льк≥сть дн≥в");
-				scanner = new Scanner(System.in);
-				int days = scanner.nextInt();
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.getDays() > days) {
-						System.out.println(m.name());
-						flag = true;
-					}
-							
-				}
-				
-			
-				if (!flag) {
-					System.out.println("ћ≥с€ц≥в з такою к≥льк≥стю дн≥в Ќ≈ знайдено");
-				}
-				
-				break;	
-			}
-			
-			
-			case "6": {
-				System.out.println("¬вед≥ть пору року");
-				scanner = new Scanner(System.in);
-				String season = scanner.next().toUpperCase();
-				
-				boolean flag = false;
-				
-				for (Seasons s : masSeasons) {
-					if (s.name().equals(season)) {
-						flag = true;
-					}
-				}
-				
-				if(flag) {
-					System.out.println("Ќаступна пора року - ");
-					Seasons seasonsValue6 = Seasons.valueOf(season);
-					int ordinal = seasonsValue6.ordinal();
-					if (ordinal == (masSeasons.length - 1)) {
-						ordinal = 0;
-						System.out.println(masSeasons[ordinal]);
-					}else {
-						System.out.println(masSeasons[ordinal + 1]);
-					}
-					
-				}
-			
-				if (!flag) {
-					System.out.println("ѕори року Ќ≈ знайдено");
-				}
-				
-				break;	
-			}
-			
-			case "7": {
-				System.out.println("¬вед≥ть пору року");
-				scanner = new Scanner(System.in);
-				String season = scanner.next().toUpperCase();
-				
-				boolean flag = false;
-				
-				for (Seasons s : masSeasons) {
-					if (s.name().equals(season)) {
-						flag = true;
-					}
-				}
-				
-				if(flag) {
-					System.out.println("ѕопередн€ пора року - ");
-					Seasons seasonsValue7 = Seasons.valueOf(season);
-					int ordinal = seasonsValue7.ordinal();
-					if (ordinal == 0) {
-						ordinal = (masSeasons.length - 1);
-						System.out.println(masSeasons[ordinal]);
-					}else {
-						System.out.println(masSeasons[ordinal - 1]);
-					}
-					
-				}
-			
-				if (!flag) {
-					System.out.println("ѕори року Ќ≈ знайдено");
-				}
-				
-				break;	
-			}
-			
-			case "8": {
-				System.out.println("ћ≥с€ц≥, €к≥ мають парну к≥льк≥сть дн≥в");
-				//scanner = new Scanner(System.in);
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.getDays() % 2 == 0) {
-						System.out.println(m.name());
-						flag = true;
-					}
-							
-				}
-				
-				break;	
-			}
-			
-			case "9": {
-				System.out.println("ћ≥с€ц≥, €к≥ мають непарну к≥льк≥сть дн≥в");
-				//scanner = new Scanner(System.in);
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.getDays() % 2 != 0) {
-						System.out.println(m.name());
-						flag = true;
-					}
-				}
-				
-				break;	
-			}
-			
-			case "10": {
-				System.out.println("¬вед≥ть назву м≥с€ц€");
-				scanner = new Scanner(System.in);
-				String month = scanner.next().toUpperCase();
-				
-				boolean flag = false;
-				
-				for (Months m : masMonths) {
-					if (m.name().equals(month)) {
-						flag = true;
-					}
-							
-				}
-				
-				if(flag) {
-					for (Months m : masMonths) {
-						if (m.name().equals(month)) {
-							if (m.getDays() % 2 == 0) {
-								System.out.println("÷ей м≥с€ць маЇ парну к≥льк≥сть дн≥в");
-							}else {
-								System.out.println("÷ей м≥с€ць маЇ непарну к≥льк≥сть дн≥в");
-							}
-						}
-					}
-					
-				}
-			
-				if (!flag) {
-					System.out.println("Ќазву м≥с€ц€ Ќ≈ знайдено");
-				}
-				
-				break;	
-			}
-			
-			}
-			
-			
-		}
-		
-
-	}
-
 }
